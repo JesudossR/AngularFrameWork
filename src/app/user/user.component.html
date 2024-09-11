@@ -1,0 +1,101 @@
+<div class="container mt-4">
+  <!-- Form for Adding a New Student -->
+  <h2>Add Student</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="studentForm">
+    <div class="form-group">
+      <label for="studId">Student ID:</label>
+      <input type="text" id="studId" formControlName="studId" class="form-control" />
+      <div *ngIf="studentForm.get('studId')?.invalid && studentForm.get('studId')?.touched">
+        Student ID is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name" class="form-control" />
+      <div *ngIf="studentForm.get('name')?.invalid && studentForm.get('name')?.touched">
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <input type="text" id="gender" formControlName="gender" class="form-control" />
+      <div *ngIf="studentForm.get('gender')?.invalid && studentForm.get('gender')?.touched">
+        Gender is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="department">Department:</label>
+      <input type="text" id="department" formControlName="department" class="form-control" />
+      <div *ngIf="studentForm.get('department')?.invalid && studentForm.get('department')?.touched">
+        Department is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" id="city" formControlName="city" class="form-control" />
+      <div *ngIf="studentForm.get('city')?.invalid && studentForm.get('city')?.touched">
+        City is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">Add Student</button>
+  </form>
+</div>
+  <!-- Student List -->
+  <h2 class="mb-4 mt-4">Student List</h2>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>StudId</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Department</th>
+        <th>City</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of users">
+        <td>{{ student.studId }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.gender }}</td>
+        <td>{{ student.department }}</td>
+        <td>{{ student.city }}</td>
+        <td>
+          <!-- Edit and Delete buttons -->
+          <button class="btn btn-primary" (click)="saveStudent(student.studId)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteStudent(student.studId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+<!-- <h2 class="mb-4">Todo List</h2>
+<table class="table table-striped table-bordered">
+  <thead class="thead-dark">
+    <tr>
+        <th>Id</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Secret</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let todo of users">
+        <td>{{todo.id}}</td>
+      <td>{{ todo.name }}</td>
+      <td>{{ todo.isComplete ? 'Completed' : 'Incomplete' }}</td>
+      <td>{{todo.secret}}</td>
+    </tr>
+  </tbody>
+</table> -->
